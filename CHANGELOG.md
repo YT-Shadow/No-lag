@@ -1,22 +1,33 @@
-# 🤝 Guia de Contribuição
+# 📜 Changelog
 
-Olá! Obrigado por considerar contribuir com o projeto **No-Lag Script** para Blox Fruits!
+Todas as mudanças importantes neste projeto serão documentadas aqui.
 
-Queremos tornar o processo de contribuição o mais simples e claro possível. Aqui está como você pode ajudar:
-
----
-
-## 🧠 Requisitos
-
-Antes de começar, certifique-se de que:
-
-- Você tem uma conta no GitHub.
-- Leu o arquivo `README.md` para entender o propósito do projeto.
-- Está usando boas práticas de programação em **Lua**.
+O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/) e este projeto adota a versão [SemVer](https://semver.org/lang/pt-BR/).
 
 ---
 
-## 🚀 Como Contribuir
+## [1.2.0] - 2025-07-29
+### Adicionado
+- Versão final do script `no-lag-script.lua`
+- Arquivo `LICENSE` com a licença MIT
+- Guia de contribuição (`CONTRIBUTING.md`)
+- Histórico de versões (`CHANGELOG.md`)
 
-1. **Fork** o repositório
-2. Crie uma nova branch com um nome descritivo:
+### Alterado
+- Melhorias na limpeza de efeitos visuais
+
+---
+
+## [1.1.0] - 2025-07-28
+### Adicionado
+- Nova função para reduzir partículas em tempo real
+
+### Corrigido
+- Bug que impedia remoção de sombras em dispositivos móveis
+
+---
+
+## [1.0.0] - 2025-07-27
+### Adicionado
+- Primeira versão do script de otimização
+- Remoção básica de efeitos visuais, sombras e texturas
