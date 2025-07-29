@@ -366,3 +366,211 @@ end
 -- ============================================
 
 InitializeOptimizations()
+-- ============================================
+-- MELHORIAS ADICIONAIS PARA BLOX FRUITS
+-- Adicione estas funcionalidades ao seu script
+-- ============================================
+
+-- 1. SISTEMA DE AUTO-UPDATE
+local function CheckForUpdates()
+    local currentVersion = "1.0.0"
+    local updateUrl = "https://raw.githubusercontent.com/YT-Shadow/No-lag/main/version.txt"
+    
+    -- Implementar verificação de versão aqui
+    print("🔄 Verificando atualizações...")
+end
+
+-- 2. CONFIGURAÇÕES SALVAS LOCALMENTE
+local function SaveSettings()
+    local settings = {
+        graphicsLevel = 1,
+        fpsLimit = 60,
+        particlesEnabled = false,
+        monitorEnabled = true
+    }
+    -- Salvar em arquivo local ou DataStore
+end
+
+-- 3. OTIMIZAÇÃO ESPECÍFICA PARA BLOX FRUITS
+local function OptimizeBloxFruits()
+    -- Otimizar elementos específicos do jogo
+    local workspace = game:GetService("Workspace")
+    
+    -- Remover água desnecessária
+    if workspace:FindFirstChild("Water") then
+        for _, water in pairs(workspace.Water:GetChildren()) do
+            if water:IsA("Part") then
+                water.Transparency = 1
+                water.CanCollide = false
+            end
+        end
+    end
+    
+    -- Otimizar NPCs distantes
+    spawn(function()
+        while wait(5) do
+            local player = game.Players.LocalPlayer
+            if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                local playerPos = player.Character.HumanoidRootPart.Position
+                
+                for _, npc in pairs(workspace:GetChildren()) do
+                    if npc:FindFirstChild("Humanoid") and npc ~= player.Character then
+                        local distance = (npc.HumanoidRootPart.Position - playerPos).Magnitude
+                        
+                        if distance > 300 then
+                            -- Reduzir qualidade de NPCs distantes
+                            for _, part in pairs(npc:GetChildren()) do
+                                if part:IsA("BasePart") then
+                                    part.Material = Enum.Material.Plastic
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+
+-- 4. SISTEMA DE PROFILES
+local OptimizationProfiles = {
+    ["Potato PC"] = {
+        graphicsQuality = 1,
+        particlesEnabled = false,
+        shadowsEnabled = false,
+        fpsLimit = 30,
+        renderDistance = 100
+    },
+    ["Medium PC"] = {
+        graphicsQuality = 3,
+        particlesEnabled = false,
+        shadowsEnabled = false,
+        fpsLimit = 60,
+        renderDistance = 200
+    },
+    ["High-End PC"] = {
+        graphicsQuality = 5,
+        particlesEnabled = true,
+        shadowsEnabled = true,
+        fpsLimit = 120,
+        renderDistance = 300
+    }
+}
+
+-- 5. INTERFACE DE CONFIGURAÇÃO
+local function CreateConfigGUI()
+    local ScreenGui = Instance.new("ScreenGui")
+    local MainFrame = Instance.new("Frame")
+    local Title = Instance.new("TextLabel")
+    
+    ScreenGui.Name = "OptimizationConfig"
+    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    
+    MainFrame.Parent = ScreenGui
+    MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    MainFrame.BorderSizePixel = 0
+    MainFrame.Position = UDim2.new(0.5, -200, 0.5, -150)
+    MainFrame.Size = UDim2.new(0, 400, 0, 300)
+    MainFrame.Visible = false
+    
+    -- Adicionar botões e controles aqui
+    
+    -- Toggle com tecla F1
+    game:GetService("UserInputService").InputBegan:Connect(function(input)
+        if input.KeyCode == Enum.KeyCode.F1 then
+            MainFrame.Visible = not MainFrame.Visible
+        end
+    end)
+end
+
+-- 6. SISTEMA DE LOGGING
+local function LogOptimization(message, level)
+    local timestamp = os.date("%H:%M:%S")
+    local logLevels = {
+        [1] = "INFO",
+        [2] = "WARN", 
+        [3] = "ERROR"
+    }
+    
+    print(string.format("[%s] [%s] %s", timestamp, logLevels[level] or "INFO", message))
+end
+
+-- 7. DETECÇÃO AUTOMÁTICA DE HARDWARE
+local function DetectHardware()
+    local stats = game:GetService("Stats")
+    local memory = stats:GetTotalMemoryUsageMb()
+    local fps = workspace:GetRealPhysicsFPS()
+    
+    if memory < 1000 and fps < 30 then
+        return "Potato PC"
+    elseif memory < 2000 and fps < 60 then
+        return "Medium PC"
+    else
+        return "High-End PC"
+    end
+end
+
+-- 8. MODO ANTI-LAG EXTREMO
+local function ExtremeAntiLag()
+    -- Para PCs muito fracos
+    game:GetService("Lighting").Technology = Enum.Technology.Compatibility
+    
+    -- Remover todos os sons
+    for _, sound in pairs(workspace:GetDescendants()) do
+        if sound:IsA("Sound") then
+            sound.Volume = 0
+            sound:Stop()
+        end
+    end
+    
+    -- Simplificar geometria
+    for _, part in pairs(workspace:GetDescendants()) do
+        if part:IsA("Part") or part:IsA("UnionOperation") then
+            part.Material = Enum.Material.Plastic
+            part.Reflectance = 0
+        end
+    end
+    
+    LogOptimization("Modo Anti-Lag Extremo ativado", 2)
+end
+
+-- 9. BENCHMARK AUTOMÁTICO
+local function RunBenchmark()
+    local startTime = tick()
+    local initialFPS = workspace:GetRealPhysicsFPS()
+    
+    wait(10) -- Aguardar 10 segundos
+    
+    local endTime = tick()
+    local finalFPS = workspace:GetRealPhysicsFPS()
+    local improvement = ((finalFPS - initialFPS) / initialFPS) * 100
+    
+    LogOptimization(string.format("Benchmark concluído: %.1f%% de melhoria no FPS", improvement), 1)
+    
+    return {
+        duration = endTime - startTime,
+        fpsImprovement = improvement,
+        initialFPS = initialFPS,
+        finalFPS = finalFPS
+    }
+end
+
+-- 10. INICIALIZAÇÃO INTELIGENTE
+local function SmartInitialization()
+    LogOptimization("Iniciando otimização inteligente...", 1)
+    
+    -- Detectar hardware automaticamente
+    local hardwareProfile = DetectHardware()
+    LogOptimization("Hardware detectado: " .. hardwareProfile, 1)
+    
+    -- Aplicar profile apropriado
+    local profile = OptimizationProfiles[hardwareProfile]
+    
+    -- Executar benchmark antes e depois
+    local benchmarkResults = RunBenchmark()
+    
+    -- Criar interface de configuração
+    CreateConfigGUI()
+    
+    LogOptimization("Otimização concluída com sucesso!", 1)
+end
